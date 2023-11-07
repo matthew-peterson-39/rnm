@@ -2,26 +2,33 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
-import CharacterPage from "./pages/CharacterPage";
+import CharacterPage from "./pages/CharacterListPage";
 import EpisodePage from "./pages/EpisodePage";
+import Error404 from "./pages/Error404";
+import CharacterProfilePage from "./pages/ProfilePage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error404 />,
     children: [
         {
             index: true,
             element: <HomePage />,
           },
           {
-            path: "characters",
+            path: "characters/",
             element: <CharacterPage />,
           },
-          // {
-          //   path: "episodes",
-          //   element: <EpisodePage />,
-          // },
+          {
+            path: "characters/profile/:id/",
+            element: <CharacterProfilePage />,
+          },
+          {
+            path: "episodes/",
+            element: <EpisodePage />,
+          },
     ],
   },
 ]);
